@@ -5,7 +5,7 @@
 using namespace std;
 #define MAX 25
 
-
+//Test Commit
 int a[MAX];
 int part = 0;
 void divide(int a[],float n, float p)
