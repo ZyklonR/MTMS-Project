@@ -5,6 +5,7 @@
 
 using namespace std;
 //compiled with g++ -Wall attempt2,cpp -o attempt2 -pthread
+//yo
 
 int arr_size;
 int segments;
