@@ -4,8 +4,9 @@
 #include <math.h>
 
 using namespace std;
-//compiled with g++ -Wall attempt3,cpp -o attempt3 -pthread
+//compiled with g++ -Wall attempt2,cpp -o attempt2 -pthread
 //yo
+
 void Merge(int arr[],int a, int b,int c)     
 {
 
@@ -47,6 +48,7 @@ void Merge(int arr[],int a, int b,int c)
         arr[k++]=R[j++];
     }
 }
+
 void MergeSort(int arr[],int a,int c)    
 {
     int b;                                
@@ -58,6 +60,7 @@ void MergeSort(int arr[],int a,int c)
         Merge(arr,a,b,c);
     }
 }
+
 void split(int array[],float n, float k)
 {
     int s,i,j,h;
@@ -101,30 +104,24 @@ int main () {
         random_number=rand()%max_size;
         thread_array[i] = random_number;
     }
-        for (int i = 1; i <= arr_size; i++)
+        for (int i = 0; i <= arr_size; i++)
     {
-        cout << thread_array[i] << " ";
+        cout <<thread_array[i] << " ";
     }
     cout << endl; 
-    
-    split(thread_array, arr_size, segments);
-    cout << " " << endl;
-    MergeSort(thread_array,0,arr_size-1);
-     for(int i=0;i<arr_size;i++)
-    {
-        cout<<thread_array[i]<<" ";
-    }
-    //printing the array
-    
-
-
-    
 
     //decide how many values each thread will get
     int num_of_vals_for_each_thread;
     num_of_vals_for_each_thread = floor(arr_size/segments);
     cout << "\nEach segment will perform merge sort with " << num_of_vals_for_each_thread << " values." << endl;
-        
+    
+    int n = sizeof(thread_array)/ sizeof(thread_array[0]);
+     sort(thread_array, thread_array + n);
+
+    
+    split(thread_array, arr_size, segments);
+    cout << " " << endl;
+
 
    pthread_t threads[segments];
    int rc;
@@ -139,5 +136,6 @@ int main () {
          exit(-1);
       }
    }
+   
    pthread_exit(NULL);
 }
